@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class NewspaperDto implements Serializable{
+public class NewspaperDto implements Serializable {
 
     private String lccn;
     private String url;

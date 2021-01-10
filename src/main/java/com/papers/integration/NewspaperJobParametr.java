@@ -6,18 +6,22 @@ import org.springframework.batch.core.JobParameter;
 import java.util.List;
 import java.util.UUID;
 
+public class NewspaperJobParametr extends JobParameter {
 
-public class NewspaperListJobParameter extends JobParameter {
+    private String value;
 
-    private List<NewspaperDto> newspaperDtoList;
-
-    public NewspaperListJobParameter(List<NewspaperDto> newspaperDtoList) {
+    public NewspaperJobParametr(String value) {
         super(UUID.randomUUID().toString());
-        this.newspaperDtoList = newspaperDtoList;
+        this.value=value;
     }
 
     @Override
     public Object getValue() {
-        return newspaperDtoList;
+        return value;
+    }
+
+    @Override
+    public boolean isIdentifying() {
+        return false;
     }
 }

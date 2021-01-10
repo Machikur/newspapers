@@ -2,6 +2,7 @@ package com.papers.conventer;
 
 import com.papers.domain.Newspaper;
 import com.papers.domain.NewspaperDto;
+import com.papers.integration.NewspaperRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
@@ -12,9 +13,12 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.HibernateItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 @EnableBatchProcessing
 @Configuration
@@ -24,6 +28,7 @@ public class BatchConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final JobBuilderFactory jobBuilderFactory;
     private final NewspaperListReader reader;
+    private final NewspaperRepo repo;
 
     @Bean
     ItemProcessor<NewspaperDto, Newspaper> processor() {
@@ -31,14 +36,14 @@ public class BatchConfiguration {
     }
 
     @Bean
-    HibernateItemWriter<Newspaper> writer() {
-        return new HibernateItemWriter<>();
+    ItemWriter<Newspaper> writer() {
+        return repo::saveAll;
     }
 
     @Bean
     Step changeToEntity(
             ItemProcessor<NewspaperDto, Newspaper> processor,
-            HibernateItemWriter<Newspaper> writer
+            ItemWriter<Newspaper> writer
     ) {
         return stepBuilderFactory.get("convertToEntity")
                 .<NewspaperDto, Newspaper>chunk(100)

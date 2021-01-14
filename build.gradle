@@ -24,6 +24,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-integration'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.integration:spring-integration-http'
+    implementation 'org.springframework.integration:spring-integration-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.batch:spring-batch-integration'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     compileOnly 'org.projectlombok:lombok'

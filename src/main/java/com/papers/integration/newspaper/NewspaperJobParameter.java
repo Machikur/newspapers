@@ -1,4 +1,4 @@
-package com.papers.integration;
+package com.papers.integration.newspaper;
 
 import com.papers.domain.NewspaperDto;
 import org.springframework.batch.core.JobParameter;

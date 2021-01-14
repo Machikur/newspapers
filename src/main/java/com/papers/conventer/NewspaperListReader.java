@@ -1,7 +1,7 @@
 package com.papers.conventer;
 
 import com.papers.domain.NewspaperDto;
-import com.papers.integration.NewspaperDtoListWrapper;
+import com.papers.integration.newspaper.NewspaperDtoListWrapper;
 import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.beans.factory.annotation.Value;
